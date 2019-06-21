@@ -148,3 +148,18 @@ CTWL *ctwl_create_empty(void)
 	list->cur = NULL;
 	return list;
 }
+
+CTWL *ctwl_create_random(unsigned int size) 
+{
+	int i;
+	float data;
+	CTWL *list;
+
+	list = ctwl_create_empty();
+
+	for (i = 0; i<size; i++) {
+		data = rand() % 20;
+		list->cur = ctwl_insert_right(list, data);
+	}
+	return list;
+}
