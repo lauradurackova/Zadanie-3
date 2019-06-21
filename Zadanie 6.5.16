@@ -163,3 +163,23 @@ CTWL *ctwl_create_random(unsigned int size)
 	}
 	return list;
 }
+
+void ctwl_destroy(CTWL *list) 
+{
+	TWN *cur, *dalsi;
+
+	if (list->cur == NULL) 
+	{
+		free(list);
+		return;
+	}
+
+	while (list->cur->next != list->cur) 
+	{
+		dalsi = list->cur->next;
+		ctwl_delete(list);
+		list->cur = dalsi;
+	}
+
+	free(list->cur);
+}
