@@ -24,3 +24,13 @@ void ctwl_cur_step_right(CTWL *list)
 
 	list->cur = list->cur->next;
 }
+
+void ctwl_cur_step_left(CTWL *list) 
+{
+	if (list->cur == NULL) 
+	{
+		return;
+	}
+
+	list->cur = list->cur->prev;
+}
