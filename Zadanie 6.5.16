@@ -70,3 +70,38 @@ TWN *ctwl_insert_right(CTWL* list, float val)
 		return novy;
 	}
 }
+
+TWN *ctwl_insert_left(CTWL* list, float val) 
+{
+	TWN *cur, *novy, *predosly;
+
+	novy = malloc(sizeof(TWN));
+
+	if (novy == NULL) 
+	{
+		return 0;
+	}
+
+	novy->data = val;
+
+	if (list->cur == NULL) 
+	{
+		list->cur = novy;
+		list->cur->next = novy;
+		list->cur->prev = novy;
+	}
+	else
+ 	{
+		cur = list->cur;
+		predosly = list->cur->prev;
+
+		novy->next = cur;
+		novy->prev = predosly;
+		predosly->next = novy;
+		cur->prev = novy;
+
+		ctwl_cur_step_left(list);
+	}
+
+	return novy;
+}
