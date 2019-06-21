@@ -135,3 +135,16 @@ char ctwl_delete(CTWL *list)
 	free(cur);
 	return OK;
 }
+
+CTWL *ctwl_create_empty(void) 
+{
+	CTWL *list;
+
+	if ((list = (CTWL*)malloc(sizeof(CTWL))) == NULL) 
+	{
+		return NULL;
+	}
+
+	list->cur = NULL;
+	return list;
+}
