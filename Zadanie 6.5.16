@@ -204,3 +204,33 @@ void ctwl_print(CTWL *list)
 		ctwl_cur_step_right(list);
 	}
 }
+
+void ctwl_borsuk_ulam_pair(CTWL *list, TWN **a, TWN **b)
+{
+	TWN *cur;
+	int poc = 0;
+	
+	if (list->cur == NULL) 
+	{
+		return;
+	}
+	
+	cur = list->cur;
+	
+	ctwl_cur_step_right(list);
+	poc++;
+	
+	while (list->cur != cur) 
+	{
+		poc++;
+		ctwl_cur_step_right(list);
+	}
+	
+	*a = cur;
+	int i = 0;
+	for(i;i<poc/2;i++) 
+	{
+		ctwl_cur_step_right(list);
+	}
+	*b = list->cur;
+}
