@@ -183,3 +183,24 @@ void ctwl_destroy(CTWL *list)
 
 	free(list->cur);
 }
+
+void ctwl_print(CTWL *list) 
+{
+	TWN *cur;
+
+	if (list->cur == NULL) 
+	{
+		return;
+	}
+
+	cur = list->cur;
+
+	printf("%.2f ", list->cur->data);
+	ctwl_cur_step_right(list);
+
+	while (list->cur != cur) 
+	{
+		printf("%.2f ", list->cur->data);
+		ctwl_cur_step_right(list);
+	}
+}
