@@ -34,3 +34,39 @@ void ctwl_cur_step_left(CTWL *list)
 
 	list->cur = list->cur->prev;
 }
+
+TWN *ctwl_insert_right(CTWL* list, float val) 
+{
+	TWN *cur, *novy, *dalsi;
+
+	novy = malloc(sizeof(TWN));
+
+	if (novy == NULL) 
+	{
+		return 0;
+	}
+
+	novy->data = val;
+
+	if (list->cur == NULL) 
+	{
+		list->cur = novy;
+		list->cur->next = novy;
+		list->cur->prev = novy;
+
+		return novy;
+	}
+	else 
+	{
+		cur = list->cur;
+		dalsi = list->cur->next;
+
+		novy->prev = cur;
+		novy->next = dalsi;
+		list->cur->next = novy;
+		dalsi->prev = novy;
+
+		ctwl_cur_step_right(list);
+		return novy;
+	}
+}
