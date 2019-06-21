@@ -209,6 +209,7 @@ void ctwl_borsuk_ulam_pair(CTWL *list, TWN **a, TWN **b)
 {
 	TWN *cur;
 	int poc = 0;
+	int i = 0;
 	
 	if (list->cur == NULL) 
 	{
@@ -227,10 +228,30 @@ void ctwl_borsuk_ulam_pair(CTWL *list, TWN **a, TWN **b)
 	}
 	
 	*a = cur;
-	int i = 0;
+	
 	for(i;i<poc/2;i++) 
 	{
 		ctwl_cur_step_right(list);
 	}
+	
 	*b = list->cur;
+}
+
+int main() 
+{
+	CTWL *list;
+	TWN *a, *b;
+
+	srand(time(NULL));
+	
+	list = ctwl_create_random(6);
+	
+	printf("Zoznam :\n");
+	ctwl_print(list);
+	
+	ctwl_borsuk_ulam_pair(list, &a, &b);
+	printf("\nAntipodalny par: %.2f %.2f", a->data, b->data);
+
+	ctwl_destroy(list);
+
 }
