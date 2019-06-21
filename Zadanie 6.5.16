@@ -105,3 +105,33 @@ TWN *ctwl_insert_left(CTWL* list, float val)
 
 	return novy;
 }
+
+char ctwl_delete(CTWL *list) 
+{
+	TWN *cur, *prev, *next;
+
+	if (list->cur == NULL) 
+	{
+		return FAIL;
+	}
+
+	if (list->cur->next == list->cur) 
+	{
+		free(list->cur);
+		list->cur = NULL;
+		return OK;
+	}
+
+	cur = list->cur;
+	next = list->cur->next;
+	prev = list->cur->prev;
+
+	ctwl_cur_step_right(list);
+	list->cur->prev = prev;
+	ctwl_cur_step_left(list);
+	list->cur->next = next;
+	ctwl_cur_step_right(list);
+
+	free(cur);
+	return OK;
+}
