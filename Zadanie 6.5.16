@@ -235,6 +235,14 @@ void ctwl_borsuk_ulam_pair(CTWL *list, TWN **a, TWN **b)
 	}
 	
 	*b = list->cur;
+	
+	while(1) 
+	{
+		if(! (((*a)->data > (*b)->data && (*a)->data > (*b)->next->data && (*a)->next->data > (*b)->data &&  (*a)->next->data > (*b)->next->data) || ((*a)->data < (*b)->data && (*a)->data < (*b)->next->data && (*a)->next->data < (*b)->data && (*a)->next->data < (*b)->next->data)))
+			return;
+		*a = (*a)->next;
+		*b = (*b)->next;
+	}
 }
 
 int main() 
